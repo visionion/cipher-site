@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#14b8a6" />
+<title>Cipher — Privacy Policy</title>
+  <meta name="description" content="Cipher — Privacy Policy. Part of Visionion — thoughtful, privacy-first software." /><link rel="canonical" href="https://cipher.visionion.dev/privacy.html" />
+<link rel="icon" type="image/png" href="/icon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" /></head>
+<body>
+<nav class="nav"><div class="nav-container">
+<a href="/" class="nav-logo"><span class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><circle cx="8" cy="15" r="4"/><path d="M10.85 12.15 19 4"/><path d="M18 5l2 2"/><path d="M15 8l2 2"/></svg></span><span class="logo-text">Cipher</span></a>
+<div class="nav-right"><a href="/" class="nav-link">Home</a><a href="/support.html" class="nav-link">Support</a></div></div></nav>
+<main><div class="main-content" style="max-width:760px;margin:0 auto;padding:3rem 1.5rem">
+<h1 style="font-size:2rem;margin-bottom:1.5rem">Privacy Policy</h1>
+<div style="line-height:1.8;opacity:.9">
+<p><em>Last updated: 2026-06-15</em></p>
+<p>Cipher is built around one principle: <strong>your browsing history is yours, and nobody else's</strong> — including ours.</p>
+
+<h2>No Data Collection</h2>
+<p>Cipher does not collect, store, or transmit personal data. There are no servers, no analytics, no telemetry, no crash reporters, and no third-party SDKs of any kind.</p>
+
+<h2>No Outbound Network Calls</h2>
+<p>The extension makes <strong>zero</strong> outbound network requests of its own. Cipher does not download a remote rulelist — every rule ships inside the package and is loaded by Chrome at install time.</p>
+
+<h2>How Cipher Works</h2>
+<p>Cipher uses Chrome's <a href="https://developer.chrome.com/docs/extensions/reference/api/declarativeNetRequest"><code>declarativeNetRequest</code></a> API. The extension <em>declares</em> a set of rules to the browser, and the browser then enforces them inside its network stack. The extension itself does not see the URLs of pages you visit, the contents of those pages, or the requests being matched against its rules.</p>
+
+<h2>What Cipher Stores Locally</h2>
+<p>Three things, in your browser's local extension storage (<code>chrome.storage.local</code>) only:</p>
+<ol>
+  <li><strong>An on/off boolean</strong> — whether Cipher is globally enabled.</li>
+  <li><strong>Your allowlist</strong> — the list of hostnames you've paused (e.g. <code>example.com</code>).</li>
+  <li><strong>A counter</strong> — two integers (today's count, all-time count) of tracking requests Cipher has stripped or blocked. No URLs, hostnames, timestamps per event, or any other detail.</li>
+</ol>
+<p>Uninstalling Cipher permanently deletes this data.</p>
+
+<h2>Permissions We Use</h2>
+<ul>
+  <li><strong>declarativeNetRequest</strong> — the core API: lets the extension provide its rule files to Chrome's network engine.</li>
+  <li><strong>declarativeNetRequestFeedback</strong> — lets the extension ask Chrome <em>"how many of my rules have matched recently?"</em> so the popup counter works. Only rule IDs and counts are returned — no URLs.</li>
+  <li><strong>storage</strong> — persist your settings and allowlist locally.</li>
+  <li><strong>tabs</strong> — read the <em>hostname</em> of the active tab so the popup can offer the "Pause on this site" toggle. Only the hostname; not the path, query string, fragment, cookies, or page contents.</li>
+  <li><strong>alarms</strong> — a 6-second periodic tick used to refresh the counter.</li>
+  <li><strong>host_permissions: &lt;all_urls&gt;</strong> — required by Chrome for <code>declarativeNetRequest</code> redirect actions (URL parameter stripping). Cipher does not use this permission to read page contents or inject scripts.</li>
+</ul>
+
+<h2>No Remote Code</h2>
+<p>All extension code is bundled in the package. The two DNR ruleset files are static JSON inside the package. There is no <code>eval()</code>, no remote script tags, no remote module imports, and no remote configuration endpoint. To change what Cipher blocks, a new version must be published to the Chrome Web Store.</p>
+
+<h2>Third Parties</h2>
+<p>Cipher uses no third-party services, SDKs, analytics, error reporters, or ad networks. The marketing site you're reading uses Cloudflare Web Analytics, a cookieless analytics product that does not track individuals.</p>
+
+<h2>Open Source</h2>
+<p>Every line of code that runs in your browser is published in the public repository at <a href="https://github.com/visionion/cipher">github.com/visionion/cipher</a> under the MIT license. The build script <em>minifies</em> but never <em>obfuscates</em> the code shipped to the Chrome Web Store — both are functionally identical to the source.</p>
+
+<h2>Children</h2>
+<p>Cipher is suitable for all ages and does not knowingly collect information from anyone — including children.</p>
+
+<h2>Changes to this Policy</h2>
+<p>Material changes will bump the <em>Last updated</em> date above and will be published in the repository's commit history.</p>
+
+<h2>Contact</h2>
+<p>Questions or concerns: <a href="mailto:info@visionion.dev">info@visionion.dev</a>.</p>
+</div></div></main>
+<footer class="footer"><div class="footer-container">
+<p class="footer-copy">© <span id="year"></span> Visionion. All rights reserved.</p>
+<div class="footer-links"><a href="/privacy.html">Privacy</a><a href="/support.html">Support</a><a href="https://github.com/visionion/cipher">Source</a><a href="https://visionion.dev/contact-us.html">Contact</a></div></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CF_TOKEN"}'></script>
+</body></html>
